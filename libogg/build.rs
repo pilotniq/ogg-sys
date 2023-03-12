@@ -1,5 +1,5 @@
 extern crate pkg_config;
-extern crate gcc;
+extern crate cc;
 
 use std::path::PathBuf;
 
@@ -14,7 +14,8 @@ fn main() {
         Err(..) => {}
     };
 
-    gcc::Config::new()
+    cc::Build::new()
+        .compiler("xtensa-esp32-elf-cc")
                 .file("libogg/src/bitwise.c")
                 .file("libogg/src/framing.c")
                 .define("_USRDLL", None)
